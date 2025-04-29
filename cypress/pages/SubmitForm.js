@@ -3,8 +3,7 @@ class SubmitForm {
         this.nameInput = '#name' // поле Your Name
         this.emailInput = '#email' // поле Your Email
         this.messageInput = '#message' // поле Message
-        this.serviseSelect = 'select' // поле Select A Service
-        this.requestButton = 'Request A Quote' // кнопка Request A Quote
+        this.requestButton = 'button' // кнопка Request A Quote
         this.successMessage = '#formStatus' //сообщение об успешной отправке формы
 
 }
@@ -22,13 +21,11 @@ class SubmitForm {
     }
 
     submit() {
-        cy.contains (this.requestButton).click()
+        cy.get(this.requestButton).contains('Request A Quote').click()
     }
     checkSuccessMessage (expectMessage){
-    cy.get(this.successMessage).should('contain', expectMessage)
+    cy.get(this.successMessage).should('be.visible', expectMessage)
     }
-    selectService (service) {
-        cy.get(this.serviseSelect).select(1).invoke('val').should('eq', service)
-    }
+
 }
     export default new SubmitForm()
